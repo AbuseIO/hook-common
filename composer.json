@@ -1,0 +1,30 @@
+{
+  "name": "abuseio/hook-common",
+  "description": "Hook common helper package",
+  "version": "1.0.0",
+  "keywords": ["laravel", "abuseio", "hook"],
+  "homepage": "http://abuse.io",
+  "type": "library",
+  "license": "GPL-2.0",
+  "authors": [
+    {
+      "name": "AbuseIO Foundation",
+      "email": "dev@abuse.io",
+      "homepage": "http://abuse.io",
+      "role": "Lead"
+    }
+  ],
+  "support": {
+    "email": "dev@abuse.io",
+    "issues": "https://github.com/AbuseIO/AbuseIO/issues",
+    "irc": "irc://irc.freenode.net/abuseio",
+    "source": "https://github.com/AbuseIO/hook-common",
+    "docs": "https://abuse.io/resources/documentation/"
+  },
+  "require": {
+    "php": ">=5.5.9"
+  },
+  "autoload": {
+    "psr-4": {"AbuseIO\\Hook\\": "src/"}
+  }
+}
