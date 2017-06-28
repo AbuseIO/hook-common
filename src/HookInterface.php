@@ -4,5 +4,7 @@ namespace AbuseIO\Hook;
 
 interface HookInterface
 {
-    public function call($object, $event);
+    public static function call($object, $event);
+
+    public static function isEnabled();
 }

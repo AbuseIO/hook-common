@@ -8,7 +8,7 @@ class Common
     static public function call($object, $event)
     {
         // get all the AbuseIO\Hook\* classes
-        $all_classes = get_declared_classes();
+        $all_classes = array_keys(ClassMapGenerator::createMap(base_path() . '/vendor/abuseio'));
         $hook_classes = [];
         foreach ($all_classes as $class) {
             if (preg_match("/^AbuseIO\\\\Hook\\\\/", $class) == 1) {
@@ -19,14 +19,17 @@ class Common
         // loop over all loops and execute the call
         foreach ($hook_classes as $hook)
         {
-            if (preg_match('/\\\\Common$/', $hook) == 1)
+            if ( (preg_match('/\\\\Common$/', $hook) == 1) or
+                (preg_match('/\\\\HookInterface$/', $hook) == 1))
             {
-                // skip our own class
+                // skip our own classes
                 continue;
             }
 
             try {
-                $hook::call($object, $event);
+                if ($hook::isEnabled()) {
+                    $hook::call($object, $event);
+                }
             } catch (Exception $e) {
                 // catch all exceptions, so the hooks won't break
                 // AbuseIO
