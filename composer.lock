@@ -4,9 +4,46 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "aae6dcc1b200c37ec3f3388b339fb739",
-    "content-hash": "4c6fc861b0d88b7c273a60d44f4bcb27",
-    "packages": [],
+    "hash": "79085869d530f4eda8225419606fb7e3",
+    "content-hash": "3c4ba12a90aa9ff7eefa0acfa66443f9",
+    "packages": [
+        {
+            "name": "jover/singleton",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/joverthegrey/singleton.git",
+                "reference": "4f06504af839d6acfaca58a5c3141dd37e3f6c4e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/joverthegrey/singleton/zipball/4f06504af839d6acfaca58a5c3141dd37e3f6c4e",
+                "reference": "4f06504af839d6acfaca58a5c3141dd37e3f6c4e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Joost Vermeulen",
+                    "email": "joost@jover.net"
+                }
+            ],
+            "description": "A simple Singleton implementation",
+            "time": "2017-06-29 09:31:27"
+        }
+    ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",

@@ -8,25 +8,27 @@ class Common
 {
     static public function call($object, $event)
     {
-        // get all the AbuseIO\Hook\* classes
-        $all_classes = array_keys(ClassMapGenerator::createMap(base_path() . '/vendor/abuseio'));
-        $hook_classes = [];
-        foreach ($all_classes as $class) {
-            if (preg_match("/^AbuseIO\\\\Hook\\\\/", $class) == 1) {
-                $hook_classes[] = $class;
+        // get all AbuseIO/Hook/* classes
+        // use a singleton register, so we don't have to lookup the classes every time
+        $hooks = HookRegistry::getInstance();
+
+        if (empty($hooks->registry)) {
+            $all_classes = array_keys(ClassMapGenerator::createMap(base_path() . '/vendor/abuseio'));
+            foreach ($all_classes as $class) {
+                if (preg_match("/^AbuseIO\\\\Hook\\\\/", $class) == 1) {
+
+                    // don't match the Common, HookInterface and HookRegistry class
+                    if (preg_match('/\\\\(Common|Hook(Interface|Registry))$/', $class) == 0)
+                    {
+                        $hooks->register($class);
+                    }
+                }
             }
         }
 
-        // loop over all loops and execute the call
-        foreach ($hook_classes as $hook)
+        // loop over all hooks and execute the call
+        foreach ($hooks->registry as $hook)
         {
-            if ( (preg_match('/\\\\Common$/', $hook) == 1) or
-                (preg_match('/\\\\HookInterface$/', $hook) == 1))
-            {
-                // skip our own classes
-                continue;
-            }
-
             try {
                 if ($hook::isEnabled()) {
                     $hook::call($object, $event);
