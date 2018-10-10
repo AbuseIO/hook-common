@@ -3,7 +3,7 @@ namespace AbuseIO\Hook;
 
 use Log;
 use Exception;
-use Symfony\Component\ClassLoader\ClassMapGenerator;
+use Composer\Autoload\ClassMapGenerator;
 
 class Common
 {
